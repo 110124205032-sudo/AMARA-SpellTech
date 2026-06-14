@@ -1,7 +1,14 @@
 <header class="site-header section--dark" id="top">
   <div class="container header-inner">
     <nav class="nav" aria-label="Primary">
-      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+      <!-- Mobile drawer toggle (fixed top-left). Desktop keeps its inline links below. -->
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">
+        <span class="nav-toggle__icon" aria-hidden="true" >
+          <span class="nav-toggle__line nav-toggle__line--a"></span>
+          <span class="nav-toggle__line nav-toggle__line--b"></span>
+          <span class="nav-toggle__line nav-toggle__line--c"></span>
+        </span>
+      </button>
 
       <!-- Desktop menu -->
       <div class="nav-links-wrap" aria-label="Navigation underline">
@@ -11,11 +18,42 @@
           <li><a href="./about-us.html" class="nav-link" data-nav="about">About Us</a></li>
           <li><a href="./services.html" class="nav-link" data-nav="services">Services</a></li>
           <li><a href="./projects.html" class="nav-link" data-nav="projects">Projects</a></li>
-          <li><a href="./career.html" class="nav-link" data-nav="career">Career</a></li>
+          <li><a href="./career.html" class="nav-link" data-nav="career">Careers</a></li>
           <li><a href="./contact.html" class="nav-link" data-nav="contact">Contact</a></li>
         </ul>
       </div>
 
+      <!-- Mobile drawer + overlay -->
+      <div class="mobile-nav" aria-hidden="true">
+        <div class="mobile-nav__overlay" data-mobile-nav-overlay></div>
+
+        <aside
+          id="mobile-drawer"
+          class="mobile-nav__drawer"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile navigation"
+          tabindex="-1"
+        >
+          <div class="mobile-nav__drawer-inner">
+            <nav aria-label="Mobile primary" class="mobile-nav__nav">
+              <ul class="mobile-nav__list" role="list">
+                <li style="animation-delay:0ms"><a class="mobile-nav__link" href="./index.html" data-mobile-nav-item="home">Home</a></li>
+                <li style="animation-delay:60ms"><a class="mobile-nav__link" href="./about-us.html" data-mobile-nav-item="about">About Us</a></li>
+                <li style="animation-delay:120ms"><a class="mobile-nav__link" href="./services.html" data-mobile-nav-item="services">Services</a></li>
+                <li style="animation-delay:180ms"><a class="mobile-nav__link" href="./projects.html" data-mobile-nav-item="projects">Projects</a></li>
+                <li style="animation-delay:240ms"><a class="mobile-nav__link" href="./career.html" data-mobile-nav-item="career">Careers</a></li>
+                <li style="animation-delay:300ms"><a class="mobile-nav__link" href="./contact.html" data-mobile-nav-item="contact">Contact</a></li>
+              </ul>
+            </nav>
+
+            <div class="mobile-nav__cta" aria-label="Mobile Apply Now">
+              <a class="btn btn--primary btn--full" href="./contact.html" data-mobile-apply="true">Apply Now</a>
+            </div>
+
+          </div>
+        </aside>
+      </div>
     </nav>
 
     <a class="brand" href="./index.html" aria-label="MPSD Trinity Technologies Home">
@@ -27,7 +65,9 @@
       </span>
     </a>
 
-    <a class="btn btn--primary btn--header" href="./contact.html">Apply Now</a>
+    <a class="btn btn--primary btn--header" href="./contact.html" data-header-apply>Apply Now</a>
+
   </div>
 </header>
+
 

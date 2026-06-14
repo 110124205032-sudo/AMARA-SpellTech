@@ -191,6 +191,9 @@
           return;
         }
 
+        // Prevent actual form submission — show success message instead
+        e.preventDefault();
+
         // Success message
         const successMsgId = form.id ? `${form.id}-success` : 'career-success';
         let successEl = document.getElementById(successMsgId);
@@ -233,7 +236,6 @@
 
 
   async function includeComponents() {
-
     const navbarHost = document.querySelector('[data-include="navbar"]');
     const footerHost = document.querySelector('[data-include="footer"]');
 
@@ -245,6 +247,35 @@
           .then((html) => {
             navbarHost.innerHTML = html;
           })
+          .catch(() => {
+            // file:// fallback: embed navbar inline
+            navbarHost.innerHTML = `<header class="site-header section--dark" id="top">
+  <div class="container header-inner">
+    <nav class="nav" aria-label="Primary">
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+      <div class="nav-links-wrap" aria-label="Navigation underline">
+        <span class="nav-underline" aria-hidden="true"></span>
+        <ul class="nav-links" role="list">
+          <li><a href="./index.html" class="nav-link" data-nav="home">Home</a></li>
+          <li><a href="./about-us.html" class="nav-link" data-nav="about">About Us</a></li>
+          <li><a href="./services.html" class="nav-link" data-nav="services">Services</a></li>
+          <li><a href="./projects.html" class="nav-link" data-nav="projects">Projects</a></li>
+          <li><a href="./career.html" class="nav-link" data-nav="career">Career</a></li>
+          <li><a href="./contact.html" class="nav-link" data-nav="contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    <a class="brand" href="./index.html" aria-label="MPSD Trinity Technologies Home">
+      <img class="brand-logo-img" src="logo.png" alt="MPSD Trinity Technologies logo" />
+      <span class="brand-name">
+        <span class="brand-line brand-line--primary">MPSD Trinity</span>
+        <span class="brand-line brand-line--secondary">Technologies</span>
+      </span>
+    </a>
+    <a class="btn btn--primary btn--header" href="./contact.html">Apply Now</a>
+  </div>
+</header>`;
+          })
       );
     }
 
@@ -255,33 +286,150 @@
           .then((html) => {
             footerHost.innerHTML = html;
           })
+          .catch(() => {
+            // file:// fallback: embed footer inline
+            footerHost.innerHTML = `<footer class="footer section--dark" aria-label="Footer">
+  <div class="container footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="brand brand--footer">
+          <span class="brand-mark" aria-hidden="true">◆</span>
+          <span class="brand-name">MPSD Trinity Technologies</span>
+        </div>
+        <p class="footer-text">Premium engineering for AI-ready businesses.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-title">Quick Links</div>
+        <ul class="footer-links footer-links--compact" role="list">
+          <li><a href="./about-us.html">About Us</a></li>
+          <li><a href="./services.html">Services</a></li>
+          <li><a href="./projects.html">Projects</a></li>
+          <li><a href="./career.html">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-title">Services</div>
+        <ul class="footer-links" role="list">
+          <li><a href="./services.html">AI Platform Engineering</a></li>
+          <li><a href="./services.html">Security & Compliance</a></li>
+          <li><a href="./services.html">Cloud & DevOps</a></li>
+          <li><a href="./services.html">Product UX Systems</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-title footer-title--cyan">Contact</div>
+        <div class="footer-text footer-text--rgba">Email: <a class="contact-link" href="mailto:mpsdtrinitytechnologys2026@gmail.com">mpsdtrinitytechnologys2026@gmail.com</a></div>
+        <div class="footer-text footer-text--rgba">Phone: <a class="contact-link" href="tel:+918608542881">+91 86085 42881</a></div>
+        <div class="footer-text footer-text--rgba">Location: 1/B, Cheppai Jayavelu Street, Near Church, Gargil Nagar, Tiruvottiyur, Tiruvallur District, Tamil Nadu - 600019</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-border" aria-hidden="true"></div>
+      <div class="copyright">© <span id="year"></span> MPSD Trinity Technologies. All rights reserved.</div>
+    </div>
+  </div>
+</footer>`;
+          })
       );
     }
 
     if (tasks.length) await Promise.all(tasks);
   }
 
-  function initMobileNav() {
-    const navToggle = document.querySelector('.nav-toggle');
+  function initMobileDrawer() {
     const nav = document.querySelector('.nav');
+    const navToggle = document.querySelector('.nav-toggle');
+    const mobileNav = document.querySelector('.mobile-nav');
+    const drawer = document.getElementById('mobile-drawer');
+    if (!nav || !navToggle || !mobileNav || !drawer) return;
 
-    if (navToggle && nav) {
-      navToggle.addEventListener('click', () => {
-        const isOpen = nav.classList.toggle('open');
-        navToggle.setAttribute('aria-expanded', String(isOpen));
-      });
+    const overlay = mobileNav.querySelector('[data-mobile-nav-overlay]') || null;
+    const focusable = drawer.querySelectorAll('a[href], button:not([disabled]), [tabindex="0"], [role="button"]');
 
-      // Close on link click (mobile)
-      document.querySelectorAll('.nav-links a').forEach((a) => {
-        a.addEventListener('click', () => {
-          if (nav.classList.contains('open')) {
-            nav.classList.remove('open');
-            navToggle.setAttribute('aria-expanded', 'false');
-          }
-        });
+    let lastFocusEl = null;
+
+    function isOpen() {
+      return nav.classList.contains('is-drawer-open');
+    }
+
+    function setOpen(open) {
+      if (open) {
+        if (isOpen()) return;
+        lastFocusEl = document.activeElement;
+
+        nav.classList.add('is-drawer-open');
+        navToggle.setAttribute('aria-expanded', 'true');
+        drawer.focus({ preventScroll: true });
+
+        document.body.style.overflow = 'hidden';
+      } else {
+        if (!isOpen()) return;
+        nav.classList.remove('is-drawer-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+
+        document.body.style.overflow = '';
+
+        if (lastFocusEl && typeof lastFocusEl.focus === 'function') {
+          lastFocusEl.focus({ preventScroll: true });
+        } else if (typeof navToggle.focus === 'function') {
+          navToggle.focus({ preventScroll: true });
+        }
+      }
+    }
+
+    navToggle.addEventListener('click', () => {
+      setOpen(!isOpen());
+    });
+
+    // Close when clicking outside (overlay)
+    if (overlay) {
+      overlay.addEventListener('click', (e) => {
+        e.preventDefault();
+        setOpen(false);
       });
     }
+
+    // Close when selecting a menu item
+    drawer.querySelectorAll('.mobile-nav__link').forEach((link) => {
+      link.addEventListener('click', () => {
+        setOpen(false);
+      });
+    });
+
+    // ESC key closes
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      if (!isOpen()) return;
+      setOpen(false);
+    });
+
+    // Simple focus trap when open (keyboard accessibility)
+    drawer.addEventListener('keydown', (e) => {
+      if (!isOpen()) return;
+      if (e.key !== 'Tab') return;
+
+      const items = Array.from(drawer.querySelectorAll('a[href], button:not([disabled]), [tabindex="0"]'))
+        .filter((el) => !el.hasAttribute('disabled') && el.getAttribute('aria-hidden') !== 'true');
+      if (!items.length) return;
+
+      const first = items[0];
+      const last = items[items.length - 1];
+      const active = document.activeElement;
+
+      if (e.shiftKey) {
+        if (active === first) {
+          e.preventDefault();
+          last.focus({ preventScroll: true });
+        }
+      } else {
+        if (active === last) {
+          e.preventDefault();
+          first.focus({ preventScroll: true });
+        }
+      }
+    });
   }
+
 
   function initFooterYear() {
     const yearEl = document.getElementById('year');
@@ -318,7 +466,7 @@
 
     const openBtns = document.querySelectorAll('[data-open-apply]');
     const closeBtns = modal.querySelectorAll('[data-close-apply]');
-    const backdrop = modal.querySelector('[data-close-apply]');
+    const backdrop = modal.querySelector('.apply-modal__backdrop');
     const panes = modal.querySelectorAll('[data-apply-pane]');
 
     function closeModal() {
@@ -462,7 +610,89 @@
     });
   }
 
-  // Boot
+  function initContactFormValidation() {
+    const contactForm = document.getElementById('contact-form') || document.querySelector('.contact-panel form');
+    if (!contactForm) return;
+
+    contactForm.addEventListener('submit', (e) => {
+      let ok = true;
+
+      // Clear existing errors
+      contactForm.querySelectorAll('.input--invalid').forEach((el) => el.classList.remove('input--invalid'));
+      contactForm.querySelectorAll('.field-error').forEach((el) => {
+        el.textContent = '';
+        el.style.display = 'none';
+      });
+
+      const nameField = contactForm.querySelector('input[name="name"]');
+      const emailField = contactForm.querySelector('input[type="email"][name="email"]');
+      const topicField = contactForm.querySelector('select[name="topic"]');
+      const preferredField = contactForm.querySelector('select[name="preferred"]');
+      const messageField = contactForm.querySelector('textarea[name="message"]');
+
+      // Full Name
+      if (!nameField || !isValidFullName(nameField.value)) {
+        ok = false;
+        setFieldError(nameField, 'Please enter a valid full name.');
+      }
+
+      // Email
+      if (!emailField || !isValidEmail(emailField.value)) {
+        ok = false;
+        setFieldError(emailField, 'Please enter a valid email address.');
+      }
+
+      // Topic
+      if (!topicField || !topicField.value) {
+        ok = false;
+        setFieldError(topicField, 'Please select a topic.');
+      }
+
+      // Preferred contact
+      if (!preferredField || !preferredField.value) {
+        ok = false;
+        setFieldError(preferredField, 'Please select your preferred contact method.');
+      }
+
+      // Message (minimum 10 characters)
+      const msgVal = (messageField && messageField.value || '').trim();
+      if (!messageField || msgVal.length < 10) {
+        ok = false;
+        setFieldError(messageField, 'Please enter a message (minimum 10 characters).');
+      }
+
+      if (!ok) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const firstInvalid = contactForm.querySelector('.input--invalid');
+        if (firstInvalid && typeof firstInvalid.focus === 'function') firstInvalid.focus({ preventScroll: true });
+        return;
+      }
+
+      // Let the form submit normally to Formspree if validation passes
+      // (no e.preventDefault() here — allow actual submission)
+    });
+
+    // Clear errors dynamically as user edits fields
+    contactForm.addEventListener('input', (e) => {
+      const t = e.target;
+      if (!t) return;
+      if (t.classList.contains('input--invalid')) {
+        const name = (t.name || '').toLowerCase();
+        let valid = false;
+
+        if (t.type === 'text' && name === 'name') valid = isValidFullName(t.value);
+        else if (t.type === 'email') valid = isValidEmail(t.value);
+        else if (t.tagName === 'SELECT') valid = !!t.value;
+        else if (t.tagName === 'TEXTAREA') valid = (t.value || '').trim().length >= 10;
+
+        if (valid) clearFieldError(t);
+      }
+    });
+  }
+
+// Boot
   includeComponents()
 
     .catch(() => {
@@ -470,9 +700,43 @@
       // the page will still render without the shared components.
     })
     .finally(() => {
-      initMobileNav();
+      initMobileDrawer();
       initFooterYear();
       initSmoothScroll();
+
+      // Back to Top button
+      (function initBackToTop(){
+        const btn = document.getElementById('back-to-top');
+        if (!btn) return;
+
+        const threshold = 300;
+        let ticking = false;
+
+        function setVisible(visible){
+          btn.classList.toggle('is-visible', !!visible);
+        }
+
+        function onScroll(){
+          if (ticking) return;
+          ticking = true;
+          window.requestAnimationFrame(() => {
+            setVisible(window.scrollY >= threshold);
+            ticking = false;
+          });
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+
+        btn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      })();
+
+      // Initialize careers form validation once DOM + forms exist
+      initFormValidation();
+      initContactFormValidation();
+
       initNavUnderline();
       initFadeInOnScroll();
       initApplyModal();
@@ -481,5 +745,8 @@
 
 
 })();
+
+
+
 
 
