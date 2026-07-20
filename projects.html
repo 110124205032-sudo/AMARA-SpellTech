@@ -1,170 +1,118 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Projects by MPSD Trinity Technologies — featured project GlyGuard AI and portfolio showcase." />
-  <meta name="keywords" content="MPSD Trinity Technologies, projects, GlyGuard AI, diabetes monitoring, portfolio" />
-  <meta property="og:title" content="Projects — MPSD Trinity Technologies" />
-  <meta property="og:description" content="Explore GlyGuard AI — an AI-powered diabetes monitoring platform with smart glucose tracking." />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="description" content="Projects by AMARA SpellTech — premium portfolio showcase." />
+  <meta name="keywords" content="AMARA SpellTech, projects, GlyGuard AI, diabetes monitoring, portfolio" />
+  <title>Projects — AMARA SpellTech</title>
 
-  <title>Projects — MPSD Trinity Technologies</title>
-
-  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-
-  <!-- Fonts -->
+  <link rel="icon" type="image/png" href="./favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="./styles.css" />
 </head>
-<body>
+
+<body class="section--dark">
   <div data-include="navbar"></div>
 
-  <section class="featured-hero" aria-label="GlyGuard AI introduction">
-    <div class="container featured-hero__inner">
-      <div class="featured-hero__content" data-animate-on-load>
-        <div class="featured-hero__kicker">Our Featured Project</div>
-        <h1 class="featured-hero__title">Introducing GlyGuard AI</h1>
-      </div>
+  <!-- Hero Section -->
+  <section class="section" style="padding-top: 60px; padding-bottom: 20px;">
+    <div class="container center-head fade-up" data-animate-on-scroll>
+      <div class="section-label section-label--center"><span class="accent-dot"></span> Featured Projects</div>
+      <h1 class="hero-title" style="margin-top: 16px;">Innovation through <span class="accent">Design & Code</span></h1>
+      <p class="project-subtitle" style="margin: 20px auto 0; text-align: center;">Every project represents a problem
+        solved through design, development, and innovation.</p>
     </div>
   </section>
 
-      <section class="section section--dark" id="projects">
-    <div class="container project">
-      <div class="project-left">
-        <div class="section-label"><span class="accent-dot"></span> Featured Project</div>
-        <h2 class="section-title">GlyGuard AI</h2>
-        <p class="body body--light">GlyGuard AI is an AI powered diabetes  monitoring platform that provides smart glucose tracking, health insights, and personalised care recommendation 
-        </p>
+  <!-- Projects Showcase -->
+  <section class="section" id="projects">
+    <div class="container">
 
-        <div class="bullet-grid" role="list" aria-label="Project benefits">
-          <div class="bullet-item"><span class="check check--glow">✓</span>Real-time monitoring</div>
-          <div class="bullet-item"><span class="check check--glow">✓</span>AI Health Assistant</div>
-          <div class="bullet-item"><span class="check check--glow">✓</span>Exercise and activity Monitoring </div>
-          <div class="bullet-item"><span class="check check--glow">✓</span>Carbohydrate Tracking</div>
-          <div class="bullet-item"><span class="check check--glow">✓</span>Medication Reminders</div>
+      <!-- PROJECT 1: GlyGuard AI -->
+      <!-- To add a new project, duplicate this entire <article> block -->
+      <article class="featured-project">
 
-        </div>
+        <!-- Left: Project Info -->
+        <div class="project-info fade-up" data-animate-on-scroll style="align-self: center;">
+          <div class="project-header">
+            <h2 class="project-main-title">Mehfil 26</h2>
+            <p class="project-subtitle">Mehfil 2026 is my first official website developed for my college, showcasing
+              the annual cultural festival with a modern and responsive design.
+              It highlights my frontend development skills through an intuitive user interface, smooth animations, and
+              seamless navigation.</p>
 
-        <div class="project-actions">
-        </div>
 
-      </div>
 
-      <div class="project-right" aria-label="Product mockup">
-        <div class="mockup-stack">
-          <div class="mockup laptop" aria-hidden="true">
-            <div class="mockup-topbar">
-              <span class="dot" style="background:#1DE9B6"></span>
-              <span class="dot" style="background:#00E5FF"></span>
-              <span class="dot" style="background:#4B5563"></span>
-              <div class="mockup-title">Patient Vital Signs Monitor</div>
-
+            <div class="project-links">
+              <a href="#" class="btn btn--primary">Live Demo</a>
+              <a href="#" class="btn btn--ghost">GitHub</a>
             </div>
-            <div class="mockup-body">
-              <div class="dash-row">
-                <div class="metric">
-                  <div class="metric-label metric-label--glow">Systolic</div>
-                  <div class="metric-value metric-value--blood">118<span class="metric-unit">mmHg</span></div>
-                </div>
-                <div class="metric">
-                  <div class="metric-label metric-label--glow">Diastolic</div>
-                  <div class="metric-value metric-value--blood">76<span class="metric-unit">mmHg</span></div>
-                </div>
-                <div class="metric">
-                  <div class="metric-label metric-label--glow">Heart Rate</div>
-                  <div class="metric-value metric-value--blood">70<span class="metric-unit">bpm</span></div>
-                </div>
-
-              </div>
-
-              <div class="dash-panels">
-                <div class="panel panel--chart panel--vitals" aria-label="Pulse waveform">
-                  <div class="panel-title panel-title--teal">Pulse Waveform</div>
-                  <div class="pulse-bars" aria-hidden="true">
-                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-                  </div>
-                </div>
-                <div class="panel panel--list panel--vascular" aria-label="Vascular status">
-                  <div class="panel-title panel-title--teal">Vascular Status</div>
-                  <ul class="panel-list panel-list--vascular" role="list">
-                    <li>
-                      <span class="v-pill v-pill--steady">Steady</span>
-                      <span class="v-text">Normal sinus rhythm.</span>
-                    </li>
-                    <li>
-                      <span class="v-pill v-pill--trend">Trend</span>
-                      <span class="v-text">Optimal range maintained.</span>
-                    </li>
-                    <li>
-                      <span class="v-pill v-pill--review">Review</span>
-                      <span class="v-text">Pulse pressure variation.</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-            </div>
-
-            <div class="mockup-frame-mark" aria-hidden="true">CardioPulse CP-200</div>
           </div>
+        </div>
 
+        <!-- Right: Devices Showcase -->
+        <div class="project-visuals fade-up" data-animate-on-scroll>
+          <div class="showcase-devices">
 
-          <!-- <div class="mockup phone" aria-hidden="true">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <div class="phone-head">AI Status</div>
-              <div class="phone-row">
-                <div class="ring">
-                  <div class="ring-inner"></div>
-                </div>
-                <div>
-                  <div class="phone-k">Model health</div>
-                  <div class="phone-v"><span class="accent">Stable</span></div>
-                </div>
-              </div>
-              <div class="phone-cards">
-                <div class="mini-card">Anomaly score ↓</div>
-                <div class="mini-card">Alerts auto-routed</div>
-                <div class="mini-card">Latency under target</div>
+            <!-- Acer Aspire Go 14 CSS Mockup -->
+            <div class="device-laptop">
+              <div class="laptop-screen">
+                <!-- Replace src with your desktop recording (e.g. desktop.mp4) -->
+                <video autoplay loop muted playsinline preload="metadata">
+                  <source src="mehfil%20recording.mp4" type="video/mp4">
+                  <!-- Fallback background if video is missing -->
+                  <div
+                    style="width:100%; height:100%; background: linear-gradient(45deg, #0f2027, #203a43, #2c5364); display:flex; align-items:center; justify-content:center; color:#fff; font-family:Inter, sans-serif; letter-spacing:2px; font-size:1.5rem;">
+                    DESKTOP UI VIDEO</div>
+                </video>
               </div>
             </div>
-          </div> -->
 
-          <div class="mockup-glow" aria-hidden="true"></div>
+            <!-- OPPO F25 Pro 5G CSS Mockup -->
+            <div class="device-phone">
+              <div class="phone-camera"></div>
+              <div class="phone-screen">
+                <!-- Replace src with your mobile recording (e.g. mobile.mp4) -->
+                <video autoplay loop muted playsinline preload="metadata">
+                  <source src="mehfil%20recording2.mp4" type="video/mp4">
+                  <!-- Fallback background -->
+                  <div
+                    style="width:100%; height:100%; background: linear-gradient(135deg, #0f2027, #2c5364); display:flex; align-items:center; justify-content:center; color:#fff; font-size:12px; font-family:Inter, sans-serif; text-align:center; letter-spacing:1px;">
+                    APP<br>VIDEO</div>
+                </video>
+              </div>
+            </div>
+
+          </div>
         </div>
-      </div>
+
+      </article>
+      <!-- END PROJECT 1 -->
+
     </div>
   </section>
 
-  <section class="section section--dark" aria-label="Digital transformation invitation">
-    <div class="container journey-invite">
-      <div class="journey-invite__content" data-animate-on-scroll>
-        <h2 class="journey-invite__title">Start Your Journey With Us</h2>
-        <p class="journey-invite__text">
-          Partner with MPSD Trinity Technologies to turn your ideas into innovative digital solutions. From AI-powered platforms to scalable software and cloud technologies, we help businesses build, grow, and succeed in the digital era.
-        </p>
-
-        <div class="journey-invite__actions">
-          <a class="btn btn--journey" href="./contact.html">Let’s Get Started</a>
-        </div>
-      </div>
+  <section class="section" style="padding-top: 60px;">
+    <div class="container journey-invite center-head fade-up" data-animate-on-scroll>
+      <h2 class="section-title">Ready to innovate?</h2>
+      <p class="body" style="margin: 20px auto 30px; max-width: 60ch; color: rgba(255,255,255,0.7);">
+        Partner with AMARA SpellTech to turn your ideas into innovative digital solutions.
+      </p>
+      <a class="btn btn--primary" href="./contact.html">Start a Project</a>
     </div>
   </section>
-<!-- 
-    </div>
-  </section> -->
 
   <div data-include="footer"></div>
-
   <button id="back-to-top" type="button" aria-label="Back to Top">↑</button>
 
-  <script src="./script.js"></script>
+  <script src="./js/forms.js"></script>
+  <script src="./js/animations.js"></script>
+  <script src="./js/core.js"></script>
 </body>
-</html>
 
+</html>
