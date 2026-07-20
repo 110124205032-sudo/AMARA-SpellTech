@@ -1,0 +1,24 @@
+/* AMARA SpellTech - Global Layout */
+.section{ padding: 32px 0; position: relative; }
+.section--dark{
+  background: radial-gradient(1200px 500px at 50% -120px, rgba(0,229,255,0.08), transparent 55%),
+              linear-gradient(180deg, var(--navy-900) 0%, var(--navy-800) 100%);
+  color: var(--white);
+}
+.section--light{
+  background: radial-gradient(circle at 10% 20%, rgba(0, 229, 255, 0.03) 0%, transparent 40%),
+              radial-gradient(circle at 90% 80%, rgba(29, 233, 182, 0.04) 0%, transparent 40%),
+              var(--white);
+}
+.section--offwhite{
+  background: radial-gradient(circle at 80% 20%, rgba(0, 229, 255, 0.04) 0%, transparent 40%),
+              radial-gradient(circle at 20% 80%, rgba(29, 233, 182, 0.03) 0%, transparent 40%),
+              var(--offwhite);
+}
+
+.container{
+  width: min(var(--container), calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.center-head{ text-align:center; }
