@@ -1,29 +1,39 @@
 /* AMARA SpellTech - Variables & Reset */
-:root{
-  --navy-900:#041122;
-  --navy-800:#0B192C;
-  --white:#FFFFFF;
-  --offwhite:#F8F9FA;
-  --text-dark:#1F2937;
-  --text-mid:#4B5563;
-  --cyan:#00E5FF;
-  --teal:#1DE9B6;
+:root {
+  --navy-900: #041122;
+  --navy-800: #0B192C;
+  --white: #FFFFFF;
+  --offwhite: #F8F9FA;
+  --text-dark: #1F2937;
+  --text-mid: #4B5563;
+  --cyan: #00E5FF;
+  --teal: #1DE9B6;
 
-  --radius:8px;
+  --radius: 8px;
   --shadow-soft: 0 14px 40px rgba(2, 12, 27, 0.10);
   --shadow-soft-2: 0 10px 28px rgba(2, 12, 27, 0.12);
-  --shadow-card: 0 12px 30px rgba(0,0,0,0.06);
+  --shadow-card: 0 12px 30px rgba(0, 0, 0, 0.06);
 
   --container: 1120px;
 }
 
-*{ box-sizing:border-box; }
-html,body{ height:100%; }
-body{
-  margin:0;
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
   font-family: Inter, Roboto, Montserrat, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
   color: var(--text-dark);
   background: var(--white);
 }
 
-a{ color:inherit; text-decoration:none; }
+a {
+  color: inherit;
+  text-decoration: none;
+}
